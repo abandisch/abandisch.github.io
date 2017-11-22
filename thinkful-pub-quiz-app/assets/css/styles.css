@@ -1,0 +1,94 @@
+html {
+    box-sizing: border-box;
+}
+*, *:before, *:after {
+    box-sizing: inherit;
+}
+
+body {
+    height: 100vh;
+    font-size: 16px;
+}
+
+.container {
+    margin: 0 20px;
+}
+
+.hidden {
+    display: none !important;
+}
+
+.color-green {
+    color: #168057;
+}
+.color-red {
+    color: #802e31;
+}
+/* Quiz Questions Form */
+#form-pub-quiz input {
+    vertical-align: middle;
+}
+#form-pub-quiz label {
+    display: block;
+}
+#form-pub-quiz input[type=radio], #form-pub-quiz label {
+    cursor: pointer;
+}
+#form-pub-quiz .tracking, #form-pub-quiz button {
+    margin: 10px 0;
+}
+
+/* Feedback Form */
+.feedback-box {
+    position: relative;
+    max-width: 450px;
+    border: 1px solid;
+    padding: 5px 20px;
+    margin: 0 0 20px;
+}
+.feedback-box i {
+    position: absolute;
+    top: 5px;
+    right: 5px;
+}
+.feedback-box.color-green {
+    border-color: #168057;
+}
+.feedback-box.color-red {
+    border-color: #802e31;
+}
+/* Media Queries */
+@media screen and (min-width: 960px) {
+    .container {
+        max-width: 960px;
+        margin: 0 auto;
+    }
+}
+
+/* Wireframe mockup */
+.js-page-start, .js-page-quiz, .js-page-feedback {
+    border: 1px solid #eee;
+    padding: 10px;
+    position: relative;
+    margin: 20px 0;
+}
+.js-page-start:before, .js-page-quiz:before, .js-page-feedback:before {
+    position: absolute;
+    top: -10px;
+    background-color: #fff;
+    font-style: italic;
+    font-size: 0.8em;
+    line-height: 1.6em;
+}
+.js-page-start:before {
+    content: 'Start page content';
+}
+.js-page-quiz:before {
+    content: 'Quiz page content';
+}
+.js-page-feedback:before {
+    content: 'Feedback page content';
+}
+.js-page-start h2, .js-page-quiz h3 {
+    margin: 0;
+}

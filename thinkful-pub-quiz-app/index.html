@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title>Pub Quiz App</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        <meta name="description" content="Test your general knowledge skills with a Pub Quiz App">
+        <!-- Reset CSS -->
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/7.0.0/normalize.min.css">
+        <!-- Font Awesome Icons -->
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+        <!-- Custom Styles -->
+        <link rel="stylesheet" href="assets/css/styles.css">
+    </head>
+    <body>
+        <div class="container">
+            <header role="banner">
+                <h1>Pub Quiz App</h1>
+            </header>
+
+            <main role="main">
+                <section role="region" class="js-page-start">
+                    <header>
+                        <h2>Are you a Pub Quiz Master or Pub Quiz Apprentice?? Take the Pub Quiz and find out!</h2>
+                    </header>
+                    <form id="form-start-quiz">
+                        <button type="submit" class="js-btn-start-quiz">Start the Pub Quiz!</button>
+                    </form>
+                </section>
+
+                <section role="region" class="js-page-quiz hidden">
+                    <form id="form-pub-quiz">
+                        <header>
+                            <h3>Q: <span class="js-quiz-question">Quiz question here</span></h3>
+                        </header>
+                        <p class="js-alert-message"></p>
+                        <label for="answer-1">
+                            <input id="answer-1" type="radio" name="answer" class="js-quiz-answer">
+                            <span>radio button answer one</span>
+                        </label>
+                        <label for="answer-2">
+                            <input id="answer-2" type="radio" name="answer" class="js-quiz-answer">
+                            <span>radio button answer two</span>
+                        </label>
+                        <label for="answer-3">
+                            <input id="answer-3" type="radio" name="answer" class="js-quiz-answer">
+                            <span>radio button answer three</span>
+                        </label>
+                        <label for="answer-4">
+                            <input id="answer-4" type="radio" name="answer" class="js-quiz-answer">
+                            <span>radio button answer four</span>
+                        </label>
+                        <button type="submit" class="js-next">Check Answer</button>
+                        <div class="tracking">
+                            <span class="track-question">1/10 Questions</span> |
+                            <span class="track-score">0/10 Correct</span>
+                        </div>
+                    </form>
+                </section>
+
+                <section role="region" class="js-page-feedback hidden">
+                    <header>
+                        <h3>You got <span class="js-feedback-total-questions-correct">X/10</span> questions right!</h3>
+                        <h3 class="pub-quiz-master hidden">Congratulations you are a true Pub Quiz Master!</h3>
+                        <h3 class="pub-quiz-apprentice hidden">Sorry, mate, you're but a Pub Quiz Apprentice <i class="fa fa-frown-o "></i></h3>
+                    </header>
+                    <hr>
+                    <p><strong>Here is how you went...</strong></p>
+                    <div class="questions-feedback"></div>
+                    <hr>
+                    <form id="form-retry-quiz">
+                        <button type="submit" class="js-start-over">Try the quiz again</button>
+                    </form>
+                </section>
+
+            </main>
+
+        </div>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/underscore.js/1.8.3/underscore-min.js"></script>
+        <script src="assets/js/pub-quiz-app.js"></script>
+    </body>
+</html>
