@@ -18,7 +18,7 @@ const PubQuiz = {
     quizQuestions: [],              // Array to hold the question for the Pub Quiz
     correctlyAnsweredQuestions: 0,  // Used to track the number of questions answered correctly
     currentQuestionIndex: 0,        // Used to track the current question
-    maxQuestions: 3,               // The maximum number of questions to ask in the Quiz
+    maxQuestions: 10,               // The maximum number of questions to ask in the Quiz
     initQuizQuestions: function(callback_fn) {
         // - Should reset all the counters and question array
         // - Should load all available questions from the JSON file
