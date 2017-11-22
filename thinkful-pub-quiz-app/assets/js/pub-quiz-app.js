@@ -135,10 +135,10 @@ const PubQuizView = {
         // Show the total number of questions answered correctly
         $('.js-feedback-total-questions-correct').text(`${PubQuiz.correctlyAnsweredQuestions}/${PubQuiz.maxQuestions}`);
 
-        // Show the feedback message depending on the number of correctly answered questions. If 75% correct, they are a master
+        // Show the feedback message depending on the number of correctly answered questions. If 70% correct, they are a master
         $('.pub-quiz-master').addClass('hidden');
         $('.pub-quiz-apprentice').addClass('hidden');
-        let feedbackClass = PubQuiz.correctlyAnsweredQuestions / PubQuiz.maxQuestions >= 0.75 ? '.pub-quiz-master' : '.pub-quiz-apprentice';
+        let feedbackClass = PubQuiz.correctlyAnsweredQuestions / PubQuiz.maxQuestions >= 0.7 ? '.pub-quiz-master' : '.pub-quiz-apprentice';
         $(feedbackClass).removeClass('hidden');
 
         // Empty the existing feedback section
