@@ -5,40 +5,122 @@ html {
     box-sizing: inherit;
 }
 
+/* General Structure */
 body {
-    height: 100vh;
     font-size: 16px;
+    background-size: cover;
+    background: url(../images/pub-320px.jpg) no-repeat fixed;
+    height: 100vh;
+    color: #191009;
+    font-family: 'Roboto Condensed', Arial, sans-serif;
+    padding: 10%;
 }
 
 .container {
-    margin: 0 20px;
+    background-color: rgba(255, 238, 214, 0.8);
+    min-height: 50%;
+    padding: 20px;
 }
 
+hr {
+    border: 0;
+    height: 1px;
+    background-color: rgba(82, 52, 45, 0.4);
+}
+
+/* Helper Classes */
 .hidden {
     display: none !important;
 }
+.text-center {
+    text-align: center;
+}
 
+/* Feedback Colors */
 .color-green {
     color: #168057;
 }
 .color-red {
     color: #802e31;
 }
-/* Quiz Questions Form */
-#form-pub-quiz input {
-    vertical-align: middle;
-}
-#form-pub-quiz label {
+
+/* Buttons */
+button {
     display: block;
+    min-width: 200px;
+    height: 50px;
+    margin: 0 auto;
+    background-color: #26413C;
+    color: #fff;
+    border: 1px solid #36544f;
+    font-family: 'Roboto Condensed', Arial, sans-serif;
+    font-size: 1.2em;
 }
-#form-pub-quiz input[type=radio], #form-pub-quiz label {
+button:hover {
+    background-color: #162c27;
     cursor: pointer;
 }
-#form-pub-quiz .tracking, #form-pub-quiz button {
-    margin: 10px 0;
+
+/* Main Heading */
+header h1 {
+    font-family: 'Cinzel', serif;
+    padding: 4px 0;
+    border-bottom: 1px solid #191009;
+    border-top: 1px solid #191009;
 }
 
-/* Feedback Form */
+/* Start page */
+.page-start h2 {
+    font-weight: normal;
+}
+.page-start h2 > span {
+    font-weight: bold;
+    display: block;
+}
+
+/* Quiz Questions Page */
+.track-score {
+    margin: 0 0 20px;
+    padding: 10px;
+    background-color: #3d2217;
+    color: #e0e2db;
+}
+
+.question-number {
+    margin: 0;
+    font-size: 1.1em;
+}
+.quiz-question {
+    line-height: 1.3em;
+    font-size: 1.4em;
+    margin: 12px 0;
+}
+
+.quiz-form label {
+    display: block;
+    padding: 5px;
+    font-size: 1.2em;
+    line-height: 1.5em;
+    border: 1px solid rgba(27, 17, 15, 0.46);
+    box-shadow: 1px 1px rgba(27, 17, 15, 0.69);
+    margin: 8px 0;
+}
+.quiz-form input {
+    vertical-align: middle;
+}
+.quiz-form input[type=radio], .quiz-form label {
+    cursor: pointer;
+}
+.quiz-form button {
+    margin: 20px auto;
+}
+
+.alert-message {
+    font-size: 1.2em;
+    font-weight: bold;
+}
+
+/* Feedback Page */
 .feedback-box {
     position: relative;
     max-width: 450px;
@@ -58,6 +140,36 @@ body {
     border-color: #802e31;
 }
 /* Media Queries */
+@media screen and (min-width: 480px) {
+    body {
+        background-image: url(../images/pub-480px.jpg);
+    }
+}
+
+@media screen and (min-width: 768px) {
+    body {
+        background-image: url(../images/pub-768px.jpg);
+    }
+    .container {
+        min-height: 60%;
+    }
+
+    /* Quiz Question Page */
+    .page-quiz {
+        max-width: 400px;
+        margin: 0 auto;
+    }
+
+    /* Feedback Page */
+    .page-feedback {
+        padding: 0 50px;
+    }
+    .questions-feedback {
+        max-width: 400px;
+        margin: 0 auto;
+    }
+}
+
 @media screen and (min-width: 960px) {
     .container {
         max-width: 960px;
@@ -65,30 +177,18 @@ body {
     }
 }
 
-/* Wireframe mockup */
-.js-page-start, .js-page-quiz, .js-page-feedback {
-    border: 1px solid #eee;
-    padding: 10px;
-    position: relative;
-    margin: 20px 0;
+@media screen and (min-width: 992px) {
+    body {
+        background-image: url(../images/pub-992px.jpg);
+    }
 }
-.js-page-start:before, .js-page-quiz:before, .js-page-feedback:before {
-    position: absolute;
-    top: -10px;
-    background-color: #fff;
-    font-style: italic;
-    font-size: 0.8em;
-    line-height: 1.6em;
-}
-.js-page-start:before {
-    content: 'Start page content';
-}
-.js-page-quiz:before {
-    content: 'Quiz page content';
-}
-.js-page-feedback:before {
-    content: 'Feedback page content';
-}
-.js-page-start h2, .js-page-quiz h3 {
-    margin: 0;
+
+@media screen and (min-width: 1200px) {
+    body {
+        background-image: url(../images/pub.jpg);
+        background-size: cover;
+    }
+    .container {
+        min-height: 75%;
+    }
 }

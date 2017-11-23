@@ -80,7 +80,7 @@
       "correctAnswer": "Faster, Higher, Stronger"
     },
     {
-      "question": "Which mathematical constant is given to 3.14159265358979323846?",
+      "question": "Which mathematical constant is given to 3.14159265358979323?",
       "possibleAnswers": [ "Archimedes' Constant", "Natural Logarithmic Base", "Euler's Constant", "Golden Ratio" ],
       "correctAnswer": "Archimedes' Constant"
     },

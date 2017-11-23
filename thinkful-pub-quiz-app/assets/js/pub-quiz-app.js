@@ -18,7 +18,7 @@ const PubQuiz = {
     quizQuestions: [],              // Array to hold the question for the Pub Quiz
     correctlyAnsweredQuestions: 0,  // Used to track the number of questions answered correctly
     currentQuestionIndex: 0,        // Used to track the current question
-    maxQuestions: 10,               // The maximum number of questions to ask in the Quiz
+    maxQuestions: 3,               // The maximum number of questions to ask in the Quiz
     initQuizQuestions: function(callback_fn) {
         // - Should reset all the counters and question array
         // - Should load all available questions from the JSON file
@@ -67,26 +67,26 @@ const PubQuizView = {
         // - Should show the question page and fill in the question and answers
         PubQuiz.initQuizQuestions(() => {
             // hide the start page and feedback page and show the quiz question page
-            $('.js-page-start').addClass('hidden');
-            $('.js-page-feedback').addClass('hidden');
-            $('.js-page-quiz').removeClass('hidden');
+            $('.page-start').addClass('hidden');
+            $('.page-feedback').addClass('hidden');
+            $('.page-quiz').removeClass('hidden');
 
             // Display the first question
             this.displayQuizQuestion(PubQuiz.currentQuestion());
         });
     },
     displayQuestionNumber: function (quizQuestion) {
-        $('.track-question').text(`Question Number: ${quizQuestion.questionNumber}/${PubQuiz.maxQuestions}`);
+        $('.question-number').text(`Question: ${quizQuestion.questionNumber}/${PubQuiz.maxQuestions}`);
     },
     displayCurrentScore: function (score) {
         $('.track-score').text(`${score}/${PubQuiz.maxQuestions} Correct(ly answered)`);
     },
     displayQuizQuestion: function (quizQuestion) {
         // Reset the alert message text, in case there is one
-        $('.js-alert-message').text('');
+        $('.alert-message').text('');
 
         // Show the quiz question
-        $('.js-quiz-question').text(quizQuestion.question);
+        $('.quiz-question').text(quizQuestion.question);
 
         // Update each of the 4 radio input fields with one of the 4 possible answers
         $.each($('.js-quiz-answer'), (index, element) => {
@@ -103,13 +103,12 @@ const PubQuizView = {
     },
     checkAnswer: function() {
         // Reset the alert message text
-        let alertMessageContainer = $('.js-alert-message');
+        let alertMessageContainer = $('.alert-message');
         alertMessageContainer.text('');
 
         // Check if the user clicked on a radio button
         if (!$('input[type=radio]').is(':checked')) {
-            console.log('nothing is checked');
-            alertMessageContainer.text('Please select an answer and then click the "Check Answer" button');
+            alertMessageContainer.text('Please select an answer and then click the "Check Your Answer" button');
             return false;
         }
 
@@ -118,19 +117,24 @@ const PubQuizView = {
         PubQuiz.currentQuestion().userAnswer = selectedInput.val();
 
         // Check if the selected answer is correct or not, increment the PubQuiz.correctlyAnsweredQuestions
+        alertMessageContainer.removeClass('color-green color-red');
         if (selectedInput.val() === PubQuiz.currentQuestion().correctAnswer) {
             PubQuiz.correctlyAnsweredQuestions++;
             this.displayCurrentScore(PubQuiz.correctlyAnsweredQuestions);
-            alertMessageContainer.html('<i class="fa fa-check"></i> YAY! That\'s correct!');
+            alertMessageContainer
+                .addClass('color-green')
+                .html('<i class="fa fa-check"></i> YAY! That\'s correct!');
         } else {
-            alertMessageContainer.html(`<i class="fa fa-times"></i> Sorry, that's wrong! The correct answer is: ${PubQuiz.currentQuestion().correctAnswer}`);
+            alertMessageContainer
+                .addClass('color-red')
+                .html(`<i class="fa fa-times"></i> Sorry, that's wrong! The correct answer is: ${PubQuiz.currentQuestion().correctAnswer}`);
         }
         return true;
     },
     displayQuizSummary: function () {
         // Hide the quiz page and show the feedback page
-        $('.js-page-quiz').addClass('hidden');
-        $('.js-page-feedback').removeClass('hidden');
+        $('.page-quiz').addClass('hidden');
+        $('.page-feedback').removeClass('hidden');
 
         // Show the total number of questions answered correctly
         $('.js-feedback-total-questions-correct').text(`${PubQuiz.correctlyAnsweredQuestions}/${PubQuiz.maxQuestions}`);
@@ -155,9 +159,11 @@ const PubQuizView = {
 
             if (quizQuestion.correctAnswer === quizQuestion.userAnswer) {
                 $(questionItemBox)
+                    .addClass('color-green')
                     .find('.fa').addClass('fa-check');
             } else {
                 $(questionItemBox)
+                    .addClass('color-red')
                     .find('.fa').addClass('fa-times');
             }
 
@@ -189,7 +195,7 @@ function handleQuizEvents() {
         //   - provide feedback to the user
         //   - change the 'submit' button text to 'Next Question'
         let buttonText = $(this).find('button').text();
-        if (buttonText === 'Check Answer' && PubQuizView.checkAnswer()) {
+        if (buttonText === 'Check Your Answer' && PubQuizView.checkAnswer()) {
             $(this).find('button').text('Next Question');
         }
         // - if the button text is 'Next Question', it should
@@ -197,7 +203,7 @@ function handleQuizEvents() {
         //   - Get the next question from PubQuiz
         //   - Tell PubQuizView to render the next question
         if (buttonText === 'Next Question') {
-            $(this).find('button').text('Check Answer');
+            $(this).find('button').text('Check Your Answer');
             let nextQuestion = PubQuiz.nextQuestion();
             if (nextQuestion !== null) {
                 PubQuizView.displayQuizQuestion(nextQuestion);
