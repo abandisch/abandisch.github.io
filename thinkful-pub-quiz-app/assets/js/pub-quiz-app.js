@@ -18,7 +18,7 @@ const PubQuiz = {
     quizQuestions: [],              // Array to hold the question for the Pub Quiz
     correctlyAnsweredQuestions: 0,  // Used to track the number of questions answered correctly
     currentQuestionIndex: 0,        // Used to track the current question
-    maxQuestions: 3,               // The maximum number of questions to ask in the Quiz
+    maxQuestions: 10,               // The maximum number of questions to ask in the Quiz
     initQuizQuestions: function(callback_fn) {
         // - Should reset all the counters and question array
         // - Should load all available questions from the JSON file
@@ -88,11 +88,12 @@ const PubQuizView = {
         // Show the quiz question
         $('.quiz-question').text(quizQuestion.question);
 
-        // Update each of the 4 radio input fields with one of the 4 possible answers
+        // Update each of the 4 radio input fields with one of the 4 possible answers, and remove any user feedback from previous question
         $.each($('.js-quiz-answer'), (index, element) => {
             $(element).prop('checked', false); // Make sure it's not checked
             $(element).val(quizQuestion.possibleAnswers[index]);
             $(element).next('span').text(quizQuestion.possibleAnswers[index]);
+            $(element).closest('label').removeClass('color-green color-red').find('i').removeClass('fa-check fa-times');
         });
 
         // Show the current question number
@@ -129,7 +130,22 @@ const PubQuizView = {
                 .addClass('color-red')
                 .html(`<i class="fa fa-times"></i> Sorry, that's wrong! The correct answer is: ${PubQuiz.currentQuestion().correctAnswer}`);
         }
+        this.highlightCorrectAnswer(PubQuiz.currentQuestion().correctAnswer, selectedInput);
         return true;
+    },
+    highlightCorrectAnswer: function (correctAnswer, userInputElement) {
+        if ($(userInputElement).val() === correctAnswer) {
+            $(userInputElement).closest('label').addClass('color-green').find('i').addClass('fa-check');
+        } else {
+            $.each($('.js-quiz-answer'), (index, element) => {
+                if ($(element).val() === correctAnswer) {
+                    $(element).closest('label').addClass('color-green').find('i').addClass('fa-check');
+                }
+                if ($(element).val() === $(userInputElement).val()) {
+                    $(element).closest('label').addClass('color-red').find('i').addClass('fa-times');
+                }
+            });
+        }
     },
     displayQuizSummary: function () {
         // Hide the quiz page and show the feedback page

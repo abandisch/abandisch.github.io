@@ -105,6 +105,10 @@ header h1 {
     box-shadow: 1px 1px rgba(27, 17, 15, 0.69);
     margin: 8px 0;
 }
+.quiz-form label i {
+    float: right;
+    margin: 5px 7px 0 0;
+}
 .quiz-form input {
     vertical-align: middle;
 }
@@ -139,6 +143,12 @@ header h1 {
 .feedback-box.color-red {
     border-color: #802e31;
 }
+
+.questions-feedback {
+    font-weight: bold;
+    font-size: 1.1em;
+}
+
 /* Media Queries */
 @media screen and (min-width: 480px) {
     body {
@@ -181,14 +191,20 @@ header h1 {
     body {
         background-image: url(../images/pub-992px.jpg);
     }
+    .container {
+        min-height: 65%;
+        margin-bottom: 100px;
+    }
 }
 
 @media screen and (min-width: 1200px) {
     body {
         background-image: url(../images/pub.jpg);
         background-size: cover;
+        padding: 3%;
     }
     .container {
         min-height: 75%;
+        margin-bottom: 150px;
     }
 }
