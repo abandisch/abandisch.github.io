@@ -105,11 +105,11 @@ const PubQuizView = {
     checkAnswer: function() {
         // Reset the alert message text
         let alertMessageContainer = $('.alert-message');
-        alertMessageContainer.text('');
+        alertMessageContainer.removeClass('color-green color-red').text('');
 
         // Check if the user clicked on a radio button
         if (!$('input[type=radio]').is(':checked')) {
-            alertMessageContainer.text('Please select an answer and then click the "Check Your Answer" button');
+            alertMessageContainer.addClass('color-red').text('Please select an answer and then click the "Check Your Answer" button');
             return false;
         }
 
@@ -118,7 +118,6 @@ const PubQuizView = {
         PubQuiz.currentQuestion().userAnswer = selectedInput.val();
 
         // Check if the selected answer is correct or not, increment the PubQuiz.correctlyAnsweredQuestions
-        alertMessageContainer.removeClass('color-green color-red');
         if (selectedInput.val() === PubQuiz.currentQuestion().correctAnswer) {
             PubQuiz.correctlyAnsweredQuestions++;
             this.displayCurrentScore(PubQuiz.correctlyAnsweredQuestions);
