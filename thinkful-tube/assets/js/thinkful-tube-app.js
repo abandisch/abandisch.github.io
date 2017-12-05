@@ -87,6 +87,7 @@ function handleFormEvents() {
     $('#js-search-form').on('submit', function (event) {
         event.preventDefault();
         youTubeSearch.query = $(this).find('input[type=text]').val();
+        youTubeSearch.pageNavigationToken = '';
         youTubeSearch.fetchYouTubeResults(pageView.displayResults);
     });
 
