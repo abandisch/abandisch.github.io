@@ -5,10 +5,14 @@
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
         <title>Thinkful Tube - AJAX Project</title>
 
+        <!-- Bootstrap -->
         <link rel="stylesheet" href="assets/css/bootstrap.min.css">
+        <!-- Font Awesome -->
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
         <!-- lightbox plugin https://sorgalla.com/lity/ -->
         <link rel="stylesheet" href="assets/css/lity.min.css">
+        <!-- My styles -->
+        <link rel="stylesheet" href="assets/css/main.css">
     </head>
     <body>
         <div class="container">
@@ -28,7 +32,7 @@
                             <label for="youtubeSearch" class="sr-only">Youtube Search Term</label>
                             <input type="text" class="form-control" id="youtubeSearch" placeholder="Enter a search term here" style="width: 100%;">
                         </div>
-                        <button type="submit" class="btn btn-primary">Search YouTube <i class="fa fa-search"></i></button>
+                        <button type="submit" class="btn btn-danger">Search YouTube <i class="fa fa-search"></i></button>
                     </form>
                 </section>
 
@@ -38,22 +42,23 @@
                             <div class="alert d-none js-alert-box" role="alert"><span>test</span></div>
                         </div>
                     </div>
-
                     <ul class="list-group js-results"></ul>
-
                 </section>
 
-                <nav role="navigation">
+                <nav role="navigation" class="mt-3 mb-5 pagination-nav d-none">
                     <ul class="pagination" style="justify-content: center;">
-                        <li class="page-item"><a class="page-link js-previous-link disabled" href="#" role="button" aria-disabled="true">Previous</a></li>
-                        <li class="page-item"><a class="page-link js-next-link disabled" href="#" role="button" aria-disabled="true">Next</a></li>
+                        <li class="page-item mr-3"><button class="btn btn-danger js-btn-prev disabled"><i class="fa fa-angle-left"></i> Prev</button></li>
+                        <li class="page-item"><button class="btn btn-danger js-btn-next disabled">Next <i class="fa fa-angle-right"></i></button></li>
                     </ul>
                 </nav>
+
             </main>
         </div>
+        <!-- jQuery -->
         <script src="assets/js/jquery-3.2.1.min.js"></script>
         <!-- lightbox plugin https://sorgalla.com/lity/ -->
         <script src="assets/js/lity.min.js"></script>
+        <!-- My script -->
         <script src="assets/js/thinkful-tube-app.js"></script>
     </body>
 </html>
