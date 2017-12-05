@@ -11,6 +11,10 @@ function QuizQuestion(question, answers, correctAnswer, questionNumber) {
     this.userAnswer = null;                 // The answer that the user provided for this question
 }
 
+QuizQuestion.prototype.verifyAnswer = function(providedAnswer) {
+    return this.correctAnswer === providedAnswer;
+};
+
 /**
  * PubQuiz object - used to track and manage the quiz questions
  */
@@ -59,6 +63,9 @@ const PubQuiz = {
     }
 };
 
+/**
+ * PubQuizView object - used to manipulate the DOM to show the various quiz pages, questions and feedback
+ */
 const PubQuizView = {
     startQuiz: function () {
         // - Should tell PubQuiz to init the questions
@@ -75,8 +82,8 @@ const PubQuizView = {
             this.displayQuizQuestion(PubQuiz.currentQuestion());
         });
     },
-    displayQuestionNumber: function (quizQuestion) {
-        $('.question-number').text(`Question: ${quizQuestion.questionNumber}/${PubQuiz.maxQuestions}`);
+    displayQuestionNumber: function (questionNumber) {
+        $('.question-number').text(`Question: ${questionNumber}/${PubQuiz.maxQuestions}`);
     },
     displayCurrentScore: function (score) {
         $('.track-score').text(`${score}/${PubQuiz.maxQuestions} Correctly Answered Questions`);
@@ -90,14 +97,14 @@ const PubQuizView = {
 
         // Update each of the 4 radio input fields with one of the 4 possible answers, and remove any user feedback from previous question
         $.each($('.js-quiz-answer'), (index, element) => {
-            $(element).prop('checked', false); // Make sure it's not checked
             $(element).val(quizQuestion.possibleAnswers[index]);
             $(element).next('span').text(quizQuestion.possibleAnswers[index]);
-            $(element).closest('label').removeClass('color-green color-red').find('i').removeClass('fa-check fa-times');
+            //$(element).prop('checked', false); // Make sure it's not checked
+            $(element).prop('checked', false).closest('label').removeClass('color-green color-red').find('i').removeClass('fa-check fa-times');
         });
 
         // Show the current question number
-        this.displayQuestionNumber(quizQuestion);
+        this.displayQuestionNumber(quizQuestion.questionNumber);
 
         // Show the total number of correct questions answered
         this.displayCurrentScore(PubQuiz.correctlyAnsweredQuestions);
@@ -117,8 +124,8 @@ const PubQuizView = {
         let selectedInput = $('input[type=radio]:checked');
         PubQuiz.currentQuestion().userAnswer = selectedInput.val();
 
-        // Check if the selected answer is correct or not, increment the PubQuiz.correctlyAnsweredQuestions
-        if (selectedInput.val() === PubQuiz.currentQuestion().correctAnswer) {
+        // Check if the selected answer is correct or not, increment the PubQuiz.correctlyAnsweredQuestions and provide user feedback
+        if (PubQuiz.currentQuestion().verifyAnswer(selectedInput.val())) {
             PubQuiz.correctlyAnsweredQuestions++;
             this.displayCurrentScore(PubQuiz.correctlyAnsweredQuestions);
             alertMessageContainer
@@ -211,13 +218,13 @@ function handleQuizEvents() {
         //   - change the 'submit' button text to 'Next Question'
         let buttonText = $(this).find('button').text();
         if (buttonText === 'Check Your Answer' && PubQuizView.checkAnswer()) {
-            $(this).find('button').text('Next Question');
+            $(this).find('button').text('Next');
         }
-        // - if the button text is 'Next Question', it should
+        // - if the button text is 'Next', it should
         //   - Change the text back to Check Answer
         //   - Get the next question from PubQuiz
         //   - Tell PubQuizView to render the next question
-        if (buttonText === 'Next Question') {
+        if (buttonText === 'Next') {
             $(this).find('button').text('Check Your Answer');
             let nextQuestion = PubQuiz.nextQuestion();
             if (nextQuestion !== null) {
