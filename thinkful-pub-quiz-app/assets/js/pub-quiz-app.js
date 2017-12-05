@@ -79,7 +79,7 @@ const PubQuizView = {
         $('.question-number').text(`Question: ${quizQuestion.questionNumber}/${PubQuiz.maxQuestions}`);
     },
     displayCurrentScore: function (score) {
-        $('.track-score').text(`${score}/${PubQuiz.maxQuestions} Correctly answered Questions`);
+        $('.track-score').text(`${score}/${PubQuiz.maxQuestions} Correctly Answered Questions`);
     },
     displayQuizQuestion: function (quizQuestion) {
         // Reset the alert message text, in case there is one
